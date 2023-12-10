@@ -15,6 +15,7 @@ const db = mysql.createConnection({
   user: 'your_username', // replace with your MySQL username
   password: 'your_password', // replace with your MySQL password
   database: 'sports_card_inventory',
+  insecureAuth: true,
 });
 
 db.connect(err => {
