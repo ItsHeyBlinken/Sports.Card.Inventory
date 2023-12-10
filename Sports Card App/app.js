@@ -1,7 +1,10 @@
 
 // app.js
 
-const cardListElement = document.getElementById('cardList');
+if (typeof document !== 'undefined') {
+    // Your browser-specific code here
+    const cardListElement = document.getElementById('cardList');
+  }
 
 function addCard() {
     const brand = document.getElementById('brand').value;
@@ -9,7 +12,7 @@ function addCard() {
     const card_number = document.getElementById('card_number').value;
     const player_name = document.getElementById('player_name').value;
 
-    fetch('http://localhost:3000/addCard', {
+    fetch('http://localhost/addCard', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -37,19 +40,22 @@ function clearFields() {
 }
 
 function getCards() {
-    fetch('http://localhost:3000/getCards')
-      .then(response => {
+    fetch('http://localhost/getCards')
+    .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
       .then(cards => {
-        displayCards(cards);
+        // Handle the fetched data
+        console.log(cards);
       })
-      .catch(error => console.error('Error:', error));
-  }
-
+      .catch(error => {
+        // Handle errors more explicitly
+        console.error('Error during fetch operation:', error.message);
+      });    
+    }
 function displayCards(cards) {
     cardListElement.innerHTML = '';
 
@@ -59,8 +65,6 @@ function displayCards(cards) {
         cardListElement.appendChild(li);
     });
 }
-
-
 
 
 // Initial display
