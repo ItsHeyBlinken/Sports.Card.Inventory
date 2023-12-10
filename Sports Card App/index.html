@@ -1,0 +1,38 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Card Inventory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Sports Card Inventory</h1>
+
+    <form id="addCardForm">
+        <label for="set_name">Set:</label>
+        <input type="text" id="set_name" required>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" required>
+
+        <label for="card_number">Card Number:</label>
+        <input type="text" id="card_number" required>
+
+        <label for="player_name">Player Name:</label>
+        <input type="text" id="player_name" required>
+
+        <button type="button" onclick="addCard()">Add Card</button>
+
+        <!-- Add these links where appropriate in your index.html file -->
+        <a href="view-cards.html">View Cards</a>
+
+    </form>
+
+    <ul id="cardList"></ul>
+
+    <script src="app.js"></script>
+</body>
+</html>
