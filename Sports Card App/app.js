@@ -38,12 +38,17 @@ function clearFields() {
 
 function getCards() {
     fetch('http://localhost:3000/getCards')
-    .then(response => response.json())
-    .then(cards => {
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(cards => {
         displayCards(cards);
-    })
-    .catch(error => console.error('Error:', error));
-}
+      })
+      .catch(error => console.error('Error:', error));
+  }
 
 function displayCards(cards) {
     cardListElement.innerHTML = '';

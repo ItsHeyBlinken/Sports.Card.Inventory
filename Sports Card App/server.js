@@ -1,28 +1,30 @@
 
 
-// server.js
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
-const cors = require('cors');
+
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
+// Database Connection
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'Bnasty2215!',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'Bnasty2215!', // Use environment variables
   database: 'sports_card_inventory',
   insecureAuth: true,
 });
 
-db.connect(err => {
+db.connect((err) => {
   if (err) {
     console.error('Error connecting to MySQL:', err);
-    return;
+    process.exit(1); // Exit the application if there's an issue with the database connection
   }
   console.log('Connected to MySQL');
 });
@@ -49,6 +51,7 @@ app.post('/addCard', (req, res) => {
   });
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
