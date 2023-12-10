@@ -14,7 +14,7 @@ function addCard() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ set_name, year, card_number, player_name }),
+        body: JSON.stringify({ brand, year, card_number, player_name }),
     })
     .then(response => response.json())
     .then(result => {
