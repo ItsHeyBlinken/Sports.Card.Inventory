@@ -4,7 +4,7 @@
 const cardListElement = document.getElementById('cardList');
 
 function addCard() {
-    const set_name = document.getElementById('set_name').value;
+    const brand = document.getElementById('brand').value;
     const year = document.getElementById('year').value;
     const card_number = document.getElementById('card_number').value;
     const player_name = document.getElementById('player_name').value;
@@ -30,7 +30,7 @@ function addCard() {
 
 function clearFields() {
     // Set the input values to an empty string
-    document.getElementById('set_name').value = '';
+    document.getElementById('brand').value = '';
     document.getElementById('year').value = '';
     document.getElementById('card_number').value = '';
     document.getElementById('player_name').value = '';
@@ -55,7 +55,7 @@ function displayCards(cards) {
 
     cards.forEach(card => {
         const li = document.createElement('li');
-        li.textContent = `Set: ${card.set_name}, Year: ${card.year}, Card Number: ${card.card_number}, Player Name: ${card.player_name}`;
+        li.textContent = `Set: ${card.brand}, Year: ${card.year}, Card Number: ${card.card_number}, Player Name: ${card.player_name}`;
         cardListElement.appendChild(li);
     });
 }

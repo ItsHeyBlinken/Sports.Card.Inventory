@@ -31,18 +31,18 @@ db.connect((err) => {
 
 // Endpoint to add a card to the database
 app.post('/addCard', (req, res) => {
-  const { set_name, year, card_number, player_name } = req.body;
+  const { brand, year, card_number, player_name } = req.body;
 
   console.log('Received request body:', req.body);
 
   // Check if all required fields are provided
-  if (!set_name || !year || !card_number || !player_name) {
+  if (!brand || !year || !card_number || !player_name) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   // Insert the card into the database
   const sql = 'INSERT INTO cards (set_name, year, card_number, player_name) VALUES (?, ?, ?, ?)';
-  db.query(sql, [set_name, year, card_number, player_name], (err, result) => {
+  db.query(sql, [brand, year, card_number, player_name], (err, result) => {
     if (err) {
       console.error('Error adding card:', err);
       return res.status(500).json({ error: 'Error adding card to the database' });
