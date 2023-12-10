@@ -12,9 +12,9 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'your_username', // replace with your MySQL username
-  password: 'your_password', // replace with your MySQL password
-  database: 'sports_card_inventory',
+  user: 'root', // replace with your MySQL username
+  password: 'Bnasty2215!', // replace with your MySQL password
+  database: 'Card_Inventory',
   insecureAuth: true,
 });
 

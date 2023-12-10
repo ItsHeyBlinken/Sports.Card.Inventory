@@ -1,7 +1,7 @@
 
-CREATE DATABASE IF NOT EXISTS sports_card_inventory;
+CREATE DATABASE IF NOT EXISTS Card_Inventory;
 
-USE sports_card_inventory;
+USE card_inventory;
 
 CREATE TABLE IF NOT EXISTS cards (
   id INT AUTO_INCREMENT PRIMARY KEY,
