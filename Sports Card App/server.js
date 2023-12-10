@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
-
+const cors = require('cors');
+app.use(cors());
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
@@ -29,6 +30,8 @@ db.connect(err => {
 // Endpoint to add a card to the database
 app.post('/addCard', (req, res) => {
   const { set_name, year, card_number, player_name } = req.body;
+
+  console.log('Received request body:', req.body);
 
   // Check if all required fields are provided
   if (!set_name || !year || !card_number || !player_name) {
