@@ -12,7 +12,7 @@ function addCard() {
     const card_number = document.getElementById('card_number').value;
     const player_name = document.getElementById('player_name').value;
 
-    fetch('http://localhost:3306/addCard', {
+    fetch('http://127.0.0.1/addCard', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function clearFields() {
 }
 
 function getCards() {
-    fetch('http://localhost:3306/getCards')
+    fetch('http://127.0.0.1/getCards')
     .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
