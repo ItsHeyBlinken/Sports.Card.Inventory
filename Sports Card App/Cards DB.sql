@@ -10,3 +10,4 @@ CREATE TABLE IF NOT EXISTS cards (
   card_number VARCHAR(255) NOT NULL,
   player_name VARCHAR(255) NOT NULL
 );
+
