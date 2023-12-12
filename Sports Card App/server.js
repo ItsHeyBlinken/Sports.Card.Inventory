@@ -3,18 +3,25 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+const corsOptions = {
+  origin: 'http://127.0.0.1:8080',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+};
 
 const app = express();
 const port = 3306;
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+require('dotenv').config();
+
 // Database Connection
-const db = mysql.createConnection({
-  host: 'localhost',
+const db = mysql.createPool({
+  connectionLimit: 10,
+  host: 'Dads-Gaming-PC',
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || 'Bnasty2215!', // Use environment variables
   database: 'sports_card_inventory',

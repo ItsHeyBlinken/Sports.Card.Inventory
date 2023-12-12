@@ -1,32 +1,45 @@
 
 // app.js
 
-if (typeof document !== 'undefined') {
-    // Your browser-specific code here
+document.addEventListener('DOMContentLoaded', function () {
     const cardListElement = document.getElementById('cardList');
-  }
+
+    // Add event listener to the "Add Card" button
+    const addCardButton = document.getElementById('addCardButton');
+    if (addCardButton) {
+        addCardButton.addEventListener('click', addCard);
+    }
+
+    // ... other setup code or function calls ...
+});
 
 function addCard() {
     const brand = document.getElementById('brand').value;
     const year = document.getElementById('year').value;
     const card_number = document.getElementById('card_number').value;
     const player_name = document.getElementById('player_name').value;
+    
 
-    fetch('http://localhost:3306/addCard', {
+    fetch('http://127.0.0.1:8080/addCard', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ brand, year, card_number, player_name }),
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(result => {
         alert(result.message); // Display success message
         clearFields(); // Clear input fields
         getCards(); // Refresh the card list
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error adding card:', error);
         alert('Error adding card. Please try again.'); // Display error message
     });
 }
@@ -40,22 +53,23 @@ function clearFields() {
 }
 
 function getCards() {
-    fetch('http://localhost:3306=/getCards')
-    .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
+  fetch('http://127.0.0.1:8080/getCards')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
       })
       .then(cards => {
-        // Handle the fetched data
-        console.log(cards);
+          // Handle the fetched data
+          console.log(cards);
+          displayCards(cards); // Call the displayCards function
       })
       .catch(error => {
-        // Handle errors more explicitly
-        console.error('Error during fetch operation:', error.message);
-      });    
-    }
+          // Handle errors more explicitly
+          console.error('Error during fetch operation:', error.message);
+      });
+}
 function displayCards(cards) {
     cardListElement.innerHTML = '';
 
