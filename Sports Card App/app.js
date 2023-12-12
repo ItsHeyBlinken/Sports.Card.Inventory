@@ -20,7 +20,7 @@ function addCard() {
     const player_name = document.getElementById('player_name').value;
     
 
-    fetch('http://127.0.0.1:8080/addCard', {
+    fetch('http://127.0.0.1:3306/addCard', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ function clearFields() {
 }
 
 function getCards() {
-  fetch('http://127.0.0.1:8080/getCards')
+  fetch('http://127.0.0.1:3306/getCards')
       .then(response => {
           if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);

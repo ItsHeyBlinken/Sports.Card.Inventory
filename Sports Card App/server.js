@@ -4,7 +4,7 @@ const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const corsOptions = {
-  origin: 'http://127.0.0.1:8080',
+  origin: 'http://127.0.0.1:3306',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 };
