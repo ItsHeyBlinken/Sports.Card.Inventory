@@ -48,7 +48,7 @@ app.post('/addCard', (req, res) => {
   }
 
   // Insert the card into the database
-  const sql = 'INSERT INTO cards (set_name, year, card_number, player_name) VALUES (?, ?, ?, ?)';
+  const sql = 'INSERT INTO cards (brand, year, card_number, player_name) VALUES (?, ?, ?, ?)';
   db.query(sql, [brand, year, card_number, player_name], (err, result) => {
     if (err) {
       console.error('Error adding card:', err);
@@ -60,5 +60,5 @@ app.post('/addCard', (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://127.0.0.1:${port}`);
 });
